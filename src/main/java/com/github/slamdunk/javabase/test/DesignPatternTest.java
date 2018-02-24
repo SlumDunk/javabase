@@ -1,5 +1,7 @@
 package com.github.slamdunk.javabase.test;
 
+import com.github.slamdunk.javabase.designpattern.behavior.strategy.Plus;
+import com.github.slamdunk.javabase.designpattern.behavior.template.AbstractCalculator;
 import com.github.slamdunk.javabase.designpattern.claz.Source;
 import com.github.slamdunk.javabase.designpattern.claz.SourceSub1;
 import com.github.slamdunk.javabase.designpattern.claz.SourceSub2;
@@ -10,10 +12,23 @@ import com.github.slamdunk.javabase.designpattern.creator.builder.Builder;
 import com.github.slamdunk.javabase.designpattern.creator.factory.multifactory.MultiMethodFactory;
 import com.github.slamdunk.javabase.designpattern.creator.factory.singlefactory.SingleMethodFactory;
 import com.github.slamdunk.javabase.designpattern.creator.factory.staticfactory.StaticFactory;
+import com.github.slamdunk.javabase.designpattern.interfaces.Collection;
+import com.github.slamdunk.javabase.designpattern.interfaces.Command;
+import com.github.slamdunk.javabase.designpattern.interfaces.ICalculator;
+import com.github.slamdunk.javabase.designpattern.interfaces.Iterator;
 import com.github.slamdunk.javabase.designpattern.interfaces.Provider;
 import com.github.slamdunk.javabase.designpattern.interfaces.Sender;
 import com.github.slamdunk.javabase.designpattern.interfaces.Sourceable;
+import com.github.slamdunk.javabase.designpattern.interfaces.Subject;
 import com.github.slamdunk.javabase.designpattern.interfaces.Targetable;
+import com.github.slamdunk.javabase.designpattern.behavior.chainresponsibility.MyHandler;
+import com.github.slamdunk.javabase.designpattern.behavior.command.Invoker;
+import com.github.slamdunk.javabase.designpattern.behavior.command.MyCommand;
+import com.github.slamdunk.javabase.designpattern.behavior.command.Receiver;
+import com.github.slamdunk.javabase.designpattern.behavior.iterator.MyCollection;
+import com.github.slamdunk.javabase.designpattern.behavior.observer.MySubject;
+import com.github.slamdunk.javabase.designpattern.behavior.observer.ObserverA;
+import com.github.slamdunk.javabase.designpattern.behavior.observer.ObserverB;
 import com.github.slamdunk.javabase.designpattern.structure.adapter.ClassAdapter;
 import com.github.slamdunk.javabase.designpattern.structure.adapter.ObjectWrapper;
 import com.github.slamdunk.javabase.designpattern.structure.adapter.SourceSubC;
@@ -198,6 +213,78 @@ public class DesignPatternTest {
 			nodeB.add(nodeC);
 			tree.root.add(nodeB);
 			System.out.println("build the tree finished!");
+		}
+
+	}
+
+	public static class StrategyTest {
+
+		public void calculate() {
+			String exp = "2+8";
+			ICalculator cal = new Plus();
+			int result = cal.calculate(exp);
+			System.out.println(result);
+		}
+
+	}
+
+	public static class TemplateTest {
+
+		public void calculate() {
+			String exp = "2+8";
+			AbstractCalculator cal = new com.github.slamdunk.javabase.designpattern.behavior.template.Plus();
+			int result = cal.calculate(exp, "\\+");
+			System.out.println(result);
+		}
+
+	}
+
+	public static class ObserverTest {
+
+		public void trigger() {
+			Subject sub = new MySubject();
+			sub.add(new ObserverA());
+			sub.add(new ObserverB());
+			sub.operation();
+		}
+
+	}
+
+	public static class IteratorTest {
+
+		public void iterate() {
+			String[] arrayStr = { "abc", "123", "helloworld" };
+			Collection<String> collection = new MyCollection<String>(arrayStr);
+			Iterator<String> iterator = collection.iterator();
+			while (iterator.hasNext()) {
+				System.out.println(iterator.next());
+			}
+		}
+
+	}
+
+	public static class ChainResponsibilityTest {
+
+		public void chainHandle() {
+			MyHandler h1 = new MyHandler("h1");
+			MyHandler h2 = new MyHandler("h2");
+			MyHandler h3 = new MyHandler("h3");
+
+			h1.setHandler(h2);
+			h2.setHandler(h3);
+
+			h1.operator();
+		}
+
+	}
+
+	public static class CommandTest {
+
+		public void sendCmd() {
+			Receiver receiver = new Receiver();
+			Command cmd = new MyCommand(receiver);
+			Invoker invoker = new Invoker(cmd);
+			invoker.action();
 		}
 
 	}
