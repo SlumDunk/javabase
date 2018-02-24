@@ -1,4 +1,4 @@
-package com.github.slamdunk.javabase.generic.test;
+package com.github.slamdunk.javabase.test;
 
 import com.github.slamdunk.javabase.generic.classes.AnotherGenericInfoInterfaceImpl;
 import com.github.slamdunk.javabase.generic.classes.Container;
