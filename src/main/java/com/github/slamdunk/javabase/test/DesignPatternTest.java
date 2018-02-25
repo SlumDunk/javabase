@@ -2,6 +2,13 @@ package com.github.slamdunk.javabase.test;
 
 import com.github.slamdunk.javabase.designpattern.behavior.strategy.Plus;
 import com.github.slamdunk.javabase.designpattern.behavior.template.AbstractCalculator;
+import com.github.slamdunk.javabase.designpattern.behavior.visitor.AccountBook;
+import com.github.slamdunk.javabase.designpattern.behavior.visitor.Boss;
+import com.github.slamdunk.javabase.designpattern.behavior.visitor.CFO;
+import com.github.slamdunk.javabase.designpattern.behavior.visitor.CPA;
+import com.github.slamdunk.javabase.designpattern.behavior.visitor.ConsumeBill;
+import com.github.slamdunk.javabase.designpattern.behavior.visitor.IncomeBill;
+import com.github.slamdunk.javabase.designpattern.behavior.visitor.Visitor;
 import com.github.slamdunk.javabase.designpattern.claz.Source;
 import com.github.slamdunk.javabase.designpattern.claz.SourceSub1;
 import com.github.slamdunk.javabase.designpattern.claz.SourceSub2;
@@ -25,10 +32,18 @@ import com.github.slamdunk.javabase.designpattern.behavior.chainresponsibility.M
 import com.github.slamdunk.javabase.designpattern.behavior.command.Invoker;
 import com.github.slamdunk.javabase.designpattern.behavior.command.MyCommand;
 import com.github.slamdunk.javabase.designpattern.behavior.command.Receiver;
+import com.github.slamdunk.javabase.designpattern.behavior.interpreter.Minus;
 import com.github.slamdunk.javabase.designpattern.behavior.iterator.MyCollection;
+import com.github.slamdunk.javabase.designpattern.behavior.mediator.ColleagueA;
+import com.github.slamdunk.javabase.designpattern.behavior.mediator.ColleagueB;
+import com.github.slamdunk.javabase.designpattern.behavior.mediator.MyMediator;
+import com.github.slamdunk.javabase.designpattern.behavior.menento.Original;
+import com.github.slamdunk.javabase.designpattern.behavior.menento.Storage;
 import com.github.slamdunk.javabase.designpattern.behavior.observer.MySubject;
 import com.github.slamdunk.javabase.designpattern.behavior.observer.ObserverA;
 import com.github.slamdunk.javabase.designpattern.behavior.observer.ObserverB;
+import com.github.slamdunk.javabase.designpattern.behavior.status.Context;
+import com.github.slamdunk.javabase.designpattern.behavior.status.Status;
 import com.github.slamdunk.javabase.designpattern.structure.adapter.ClassAdapter;
 import com.github.slamdunk.javabase.designpattern.structure.adapter.ObjectWrapper;
 import com.github.slamdunk.javabase.designpattern.structure.adapter.SourceSubC;
@@ -61,6 +76,12 @@ public class DesignPatternTest {
 		singleTest.single();
 	}
 
+	/**
+	 * test factory pattern
+	 * 
+	 * @author liuzhongda
+	 *
+	 */
 	public static class FactoryTest {
 
 		public void sendSms() {
@@ -80,6 +101,12 @@ public class DesignPatternTest {
 		}
 	}
 
+	/**
+	 * test abstract factory pattern
+	 * 
+	 * @author liuzhongda
+	 *
+	 */
 	public static class AbstractFactoryTest {
 		Provider provider = null;
 
@@ -96,6 +123,12 @@ public class DesignPatternTest {
 		}
 	}
 
+	/**
+	 * test singleton pattern
+	 * 
+	 * @author liuzhongda
+	 *
+	 */
 	public static class SingletonTest {
 
 		public void single() {
@@ -103,6 +136,12 @@ public class DesignPatternTest {
 		}
 	}
 
+	/**
+	 * test builder pattern
+	 * 
+	 * @author liuzhongda
+	 *
+	 */
 	public static class BuilderTest {
 
 		public void createMailSenders() {
@@ -111,6 +150,12 @@ public class DesignPatternTest {
 		}
 	}
 
+	/**
+	 * test adapter pattern about different class
+	 * 
+	 * @author liuzhongda
+	 *
+	 */
 	public static class ClassAdapterTest {
 		Targetable target = new ClassAdapter();
 
@@ -123,6 +168,12 @@ public class DesignPatternTest {
 		}
 	}
 
+	/**
+	 * test adapter pattern about different obj
+	 * 
+	 * @author liuzhongda
+	 *
+	 */
 	public static class ObjAdapterTest {
 		Source source = new Source();
 		Targetable target = new ObjectWrapper(source);
@@ -136,6 +187,12 @@ public class DesignPatternTest {
 		}
 	}
 
+	/**
+	 * test adapter pattern about different interfaces
+	 * 
+	 * @author liuzhongda
+	 *
+	 */
 	public static class InterfaceAdapterTest {
 		Sourceable source = null;
 
@@ -150,6 +207,12 @@ public class DesignPatternTest {
 		}
 	}
 
+	/**
+	 * test decorator pattern
+	 * 
+	 * @author liuzhongda
+	 *
+	 */
 	public static class DecoratorTest {
 		Sourceable orig = new SourceableImpl();
 		Sourceable obj = new Decorator(orig);
@@ -163,6 +226,12 @@ public class DesignPatternTest {
 		}
 	}
 
+	/**
+	 * test proxy pattern
+	 * 
+	 * @author liuzhongda
+	 *
+	 */
 	public static class ProxyTest {
 		Sourceable source = new Proxy();
 
@@ -175,6 +244,12 @@ public class DesignPatternTest {
 		}
 	}
 
+	/**
+	 * test facade pattern
+	 * 
+	 * @author liuzhongda
+	 *
+	 */
 	public static class FacadeTest {
 		Computer computer = new Computer();
 
@@ -187,6 +262,12 @@ public class DesignPatternTest {
 		}
 	}
 
+	/**
+	 * test bridge pattern
+	 * 
+	 * @author liuzhongda
+	 *
+	 */
 	public static class BridgeTest {
 		Bridge bridge = new Bridge();
 
@@ -203,6 +284,12 @@ public class DesignPatternTest {
 		}
 	}
 
+	/**
+	 * test conposite pattern
+	 * 
+	 * @author liuzhongda
+	 *
+	 */
 	public static class CompositeTest {
 
 		public void createTree() {
@@ -217,6 +304,12 @@ public class DesignPatternTest {
 
 	}
 
+	/**
+	 * test strategy pattern
+	 * 
+	 * @author liuzhongda
+	 *
+	 */
 	public static class StrategyTest {
 
 		public void calculate() {
@@ -228,6 +321,12 @@ public class DesignPatternTest {
 
 	}
 
+	/**
+	 * test template pattern
+	 * 
+	 * @author liuzhongda
+	 *
+	 */
 	public static class TemplateTest {
 
 		public void calculate() {
@@ -239,6 +338,12 @@ public class DesignPatternTest {
 
 	}
 
+	/**
+	 * test observer pattern
+	 * 
+	 * @author liuzhongda
+	 *
+	 */
 	public static class ObserverTest {
 
 		public void trigger() {
@@ -250,6 +355,12 @@ public class DesignPatternTest {
 
 	}
 
+	/**
+	 * test iterator pattern
+	 * 
+	 * @author liuzhongda
+	 *
+	 */
 	public static class IteratorTest {
 
 		public void iterate() {
@@ -263,6 +374,12 @@ public class DesignPatternTest {
 
 	}
 
+	/**
+	 * test chain responsibility pattern
+	 * 
+	 * @author liuzhongda
+	 *
+	 */
 	public static class ChainResponsibilityTest {
 
 		public void chainHandle() {
@@ -278,6 +395,12 @@ public class DesignPatternTest {
 
 	}
 
+	/**
+	 * test command pattern
+	 * 
+	 * @author liuzhongda
+	 *
+	 */
 	public static class CommandTest {
 
 		public void sendCmd() {
@@ -285,6 +408,126 @@ public class DesignPatternTest {
 			Command cmd = new MyCommand(receiver);
 			Invoker invoker = new Invoker(cmd);
 			invoker.action();
+		}
+
+	}
+
+	/**
+	 * test memento pattern
+	 * 
+	 * @author liuzhongda
+	 *
+	 */
+	public static class MementoTest {
+
+		public void reboundStatus() {
+			Original origi = new Original("egg");
+
+			Storage storage = new Storage(origi.createMemento());
+
+			System.out.println("the initial status is: " + origi.getValue());
+			origi.setValue("pig");
+			System.out.println("the status after updating is: " + origi.getValue());
+
+			origi.resetStatus(storage.getMemento());
+
+			System.out.println("the status after reseting is: " + origi.getValue());
+		}
+
+	}
+
+	/**
+	 * test status pattern
+	 * 
+	 * @author liuzhongda
+	 *
+	 */
+	public static class StatusTest {
+
+		public void testStatus() {
+			Status status = new Status();
+			Context context = new Context(status);
+			// set the first status
+			status.setValue("statusA");
+			context.method();
+			// set another status
+			status.setValue("statusB");
+			context.method();
+		}
+
+	}
+
+	/**
+	 * test visitor pattern
+	 * 
+	 * @author liuzhongda
+	 *
+	 */
+	public static class VisitorTest {
+
+		public void testVisitor() {
+			AccountBook accountBook = new AccountBook();
+			// add two income bills
+			accountBook.addBill(new IncomeBill(10000, "sell goods"));
+			accountBook.addBill(new IncomeBill(12000, "sell postion of ad"));
+			// add two consume bills
+			accountBook.addBill(new ConsumeBill(1000, "salary"));
+			accountBook.addBill(new ConsumeBill(2000, "fee of material"));
+
+			Visitor boss = new Boss();
+			Visitor cpa = new CPA();
+			Visitor cfo = new CFO();
+
+			// 两个访问者分别访问账本
+			accountBook.show(cpa);
+			accountBook.show(boss);
+			accountBook.show(cfo);
+
+			((Boss) boss).getTotalConsume();
+			((Boss) boss).getTotalIncome();
+		}
+
+	}
+
+	/**
+	 * test mediator pattern
+	 * 
+	 * @author liuzhongda
+	 *
+	 */
+	public static class MediatorTest {
+
+		public void testMediator() {
+			// define my mediator
+			MyMediator mediator = new MyMediator();
+			// define colleague instances
+			ColleagueA colleagueA = new ColleagueA("zhangsan", mediator);
+			ColleagueB colleagueB = new ColleagueB("lisi", mediator);
+			// mediator knows each colleague
+			mediator.setCollA(colleagueA);
+			mediator.setCollB(colleagueB);
+			// communicate via mediator
+			colleagueA.contact("I'm A，I want to communicate with B about some business");
+			colleagueB.contact("I'm B, I have time this afternoon, let's meet at that time");
+		}
+
+	}
+
+	/**
+	 * test interpret pattern
+	 * 
+	 * @author liuzhongda
+	 *
+	 */
+	public static class InterpretTest {
+
+		public void testInterpret() {
+			int result = new Minus()
+					.interpret(new com.github.slamdunk.javabase.designpattern.behavior.interpreter.Context(
+							new com.github.slamdunk.javabase.designpattern.behavior.interpreter.Plus().interpret(
+									new com.github.slamdunk.javabase.designpattern.behavior.interpreter.Context(9, 2)),
+							4));
+			System.out.println(result);
 		}
 
 	}
